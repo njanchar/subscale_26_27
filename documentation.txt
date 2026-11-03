@@ -1,0 +1,35 @@
+Github links to all the current libraries:
+
+bmp:
+
+https://github.com/boschsensortec/BMP5_SensorAPI/tree/master
+
+encoder:
+
+https://github.com/F6HQZ/rotary-encoder-lib-for-raspberry-pi/tree/master
+
+icm:
+
+https://github.com/A-R-Hariri/ICM20948_STM32Library
+
+lsm:
+
+https://github.com/STMicroelectronics/lsm6dsv16bx-pid/tree/1c5a8c35355e8a230ec5b97827e60a892999eb65 
+
+motor controller:
+
+https://github.com/isubasinghe/libdrv8835
+
+These ones are in this folder because there are dependencies in libiries above. 
+
+mraa:
+
+https://github.com/eclipse-mraa/mraa
+
+wiringPI:
+
+https://github.com/wiringpi/wiringpi 
+
+yaml-cpp:
+
+https://github.com/jbeder/yaml-cpp 

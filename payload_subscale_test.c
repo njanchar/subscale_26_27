@@ -6,7 +6,6 @@
 #include "EncoderLib/rotaryencoder.h"
 #include "LSM6DSV16BXTR/lsm6dsv16bx_reg.h"
 #include "ICM20948_STM32Library/Core/Inc/ICM_20948_C.h"
-
 #include "BMP581/bmp5.h"
 
 
