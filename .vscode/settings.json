@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "Visual Studio Dark",
+    "C_Cpp.default.compilerPath": "c:\\msys64\\ucrt64\\bin\\gcc.exe",
+    "chat.agent.enabled": false,
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "C_Cpp.copilotHover": "disabled",
+    "editor.inlineSuggest.showToolbar": "never",
+    "editor.quickSuggestions": {
+        "other": "off",
+        "comments": "off",
+        "strings": "off"
+    }
+}
