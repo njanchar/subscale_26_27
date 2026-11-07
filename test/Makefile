@@ -5,52 +5,28 @@ CC := gcc
 FLAGS := -O2 -g -Wall -Wextra -Wconversion -Wshadow -Werror -lm
 CFLAGS := -std=c2x $(FLAGS)
 
-
-#--------------------------------ENCODER TEST CODE
-# Create encoder_test_code.o from encoder_test_code.c
-encoder_test_code.o: encoder_test_code.c
-	$(CC) $(CFLAGS) -c encoder_test_code.c
-
-
-# encoder objects
-encoder_objs := encoder_test_code.o
-
-# Create encoder_test_code executable
-encoder_test_code: $(encoder_objs)
-	$(CC) $(CFLAGS) -o encoder_test_code $(encoder_objs)
-
-
 #--------------------------------BMP TEST CODE
-#create bmp5.o from bmp5.c
-bmp5.o: BMP5_SensorAPI/bmp5.c
-	$(CC) $(CFLAGS) -c BMP5_SensorAPI/bmp5.c
+#create bmp581_lib.o from bmp581_lib.c
+bmp581_lib.o: bmp581_lib/bmp581_lib.c
+	$(CC) $(CFLAGS) -c bmp581_lib/bmp581_lib.c
 
-# create bmp_test_code.o from bmp_test_code.c
-bmp_test_code.o: bmp_test_code.c
-	$(CC) $(CFLAGS) -c bmp_test_code.c
+# create bmp_test.o from bmp_test.c
+bmp_test_code.o: test/bmp_test.c
+	$(CC) $(CFLAGS) -c test/bmp_test.c
+
+#create i2c_driver.o from i2c_driver.c
+i2c_driver.o: i2c_driver/i2c_driver.c
+	$(CC) $(CFLAGS) -c i2c_driver/i2c_driver.c
 
 # bmp objects
-bmp_objs := bmp_test_code.o bmp5.o
+bmp_objs := bmp_test.o bmp5.o i2c_driver.o
 
 # Create bmp_test_code executable
-bmp_test_code: $(bmp_objs)
-	$(CC) $(CFLAGS) -o bmp_test_code $(bmp_objs)
-
-
-#--------------------------------MAIN TEST CODE
-# create payload_subscale_test.o from payload_subscale_test.c
-payload_subscale_test.o: payload_subscale_test.c
-	$(CC) $(CFLAGS) -c payload_subscale_test.c
-
-# main objects
-payload_subscale_test_objs := payload_subscale_test.o
-
-# Create payload_subscale_test executable
-payload_subscale_test: $(payload_subscale_test_objs)
-	$(CC) $(CFLAGS) -o payload_subscale_test $(payload_subscale_test_objs)
+bmp_test: $(bmp_objs)
+	$(CC) $(CFLAGS) -o bmp_test $(bmp_objs)
 
 # All executables
-executable_names := encoder_test_code bmp_test_code payload_subscale_test
+executable_names := bmp_test
 
 # Make all
 all: $(executable_names)
