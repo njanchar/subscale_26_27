@@ -1,6 +1,9 @@
+#define _POSIX_C_SOURCE 199309L
+#include <time.h>
+
 #include <stdio.h>
 #include <unistd.h>
-#include "../src/i2c_driver/include/i2c_driver.h"
+#include "../src/i2c_driver/i2c_driver.h"
 #include "../bmp581_lib/bmp581_lib.h"
 
 int main(void)
@@ -11,7 +14,7 @@ int main(void)
 
     if (i2c_handle < 0)
     {
-        fprintf(stdout, "Failed to open I2C bus 1\nStopping program\n");
+        fprintf(stdout, "Failed to open I2C bus 0\nStopping program\n");
         return 1;
     }
 

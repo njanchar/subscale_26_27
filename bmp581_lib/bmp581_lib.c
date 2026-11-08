@@ -1,6 +1,9 @@
+#define _POSIX_C_SOURCE 199309L
+
 #include "bmp581_lib.h"
-#include "../src/i2c_driver/include/i2c_driver.h"
+#include "../src/i2c_driver/i2c_driver.h"
 #include <unistd.h>
+#include <time.h>
 
 /*Datasheet used: 
 
@@ -47,7 +50,8 @@ int bmp581_init(int i2c_file_descriptor, uint8_t dev_addr)
         return -1;
     }
 
-    usleep(10000); // Allow time for first measurement cycle
+    struct timespec req = { .tv_sec = 0, .tv_nsec = 10000000L }; // 10 ms = 10,000,000 ns
+    nanosleep(&req, NULL);
     return 0;
 }
 
@@ -74,14 +78,14 @@ int bmp581_read_sensor(int i2c_file_descriptor, uint8_t dev_addr, bmp581_data_t 
     // If the temperature value is negative (sign bit is set), extend the sign to 32 bits
     if (raw_temp & 0x800000) {
         // Sign-extend 24-bit to 32-bit signed
-        raw_temp |= 0xFF000000;
+        raw_temp = (int32_t)((uint32_t)raw_temp | 0xFF000000U);
     }
 
     // Reconstruct raw 24-bit signed integers for pressure
     int32_t raw_press = (int32_t)((uint32_t)buf[5] << 16 | (uint32_t)buf[4] << 8 | buf[3]);
     // If the pressure value is negative (sign bit is set), extend the sign to 32 bits
     if (raw_press & 0x800000) {
-        raw_press |= 0xFF000000; // Sign-extend 24-bit to 32-bit signed
+        raw_press = (int32_t)((uint32_t)raw_press | 0xFF000000U); // Sign-extend 24-bit to 32-bit signed
     }
 
     // Convert raw values according to scale factors
