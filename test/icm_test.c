@@ -8,7 +8,7 @@
 
 int main(void)
 {
-    int i2c_fd = i2cInit("/dev/i2c-0");
+    int i2c_fd = i2cInit("/dev/i2c-1");
     if (i2c_fd < 0)
     {
         fprintf(stderr, "Failed to open I2C bus");

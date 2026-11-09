@@ -10,11 +10,11 @@ int main(void)
 {
     // Initialize I2C bus device file
     //the bmp581 sensor is connected to the I2C bus 0 on the raspberry pi zero, which corresponds to the device file "/dev/i2c-0" on Linux systems.
-    int i2c_handle = i2cInit("/dev/i2c-0");
+    int i2c_handle = i2cInit("/dev/i2c-1");
 
     if (i2c_handle < 0)
     {
-        fprintf(stdout, "Failed to open I2C bus 0\nStopping program\n");
+        fprintf(stdout, "Failed to open I2C bus 1\nStopping program\n");
         return 1;
     }
 
