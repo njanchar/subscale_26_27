@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../src/i2c_driver/i2c_driver.h"
-#include "../bmp581_lib/bmp581_lib.h"
+#include "../src/bmp581_lib/bmp581_lib.h"
 
 int main(void)
 {

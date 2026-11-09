@@ -1,7 +1,7 @@
 #define _POSIX_C_SOURCE 199309L
 
 #include "icm20948_lib.h"
-#include "i2c_driver.h"
+#include "../i2c_driver/i2c_driver.h"
 #include <unistd.h>
 #include <time.h>
 

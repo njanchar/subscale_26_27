@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <time.h>
 #include "../src/i2c_driver/i2c_driver.h"
-#include "../icm20948_lib/icm20948_lib.h"
+#include "../src/icm20948_lib/icm20948_lib.h"
 
 int main(void)
 {

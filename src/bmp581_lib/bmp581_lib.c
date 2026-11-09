@@ -1,7 +1,7 @@
 #define _POSIX_C_SOURCE 199309L
 
 #include "bmp581_lib.h"
-#include "../src/i2c_driver/i2c_driver.h"
+#include "../i2c_driver/i2c_driver.h"
 #include <unistd.h>
 #include <time.h>
 

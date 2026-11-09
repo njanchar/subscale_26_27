@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "../gpsPA1010D_lib/gpsPA1010D_lib.h"
+#include "../src/gpsPA1010D_lib/gpsPA1010D_lib.h"
 #include "../src/i2c_driver/i2c_driver.h"
 
 int main(void)

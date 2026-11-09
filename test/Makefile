@@ -15,8 +15,8 @@ i2c_driver.o: ../src/i2c_driver/i2c_driver.c
 gps_test.o: gps_test.c
 	$(CC) $(CFLAGS) -c gps_test.c
 
-gpsPA1010D_lib.o: ../gpsPA1010D_lib/gpsPA1010D_lib.c
-	$(CC) $(CFLAGS) -c ../gpsPA1010D_lib/gpsPA1010D_lib.c
+gpsPA1010D_lib.o: ../src/gpsPA1010D_lib/gpsPA1010D_lib.c
+	$(CC) $(CFLAGS) -c ../src/gpsPA1010D_lib/gpsPA1010D_lib.c
 
 gps_objs := gps_test.o gpsPA1010D_lib.o i2c_driver.o
 
@@ -26,8 +26,8 @@ gps_test: $(gps_objs)
 
 #--------------------------------BMP TEST CODE
 #create bmp581_lib.o from bmp581_lib.c
-bmp581_lib.o: ../bmp581_lib/bmp581_lib.c
-	$(CC) $(CFLAGS) -c ../bmp581_lib/bmp581_lib.c
+bmp581_lib.o: ../src/bmp581_lib/bmp581_lib.c
+	$(CC) $(CFLAGS) -c ../src/bmp581_lib/bmp581_lib.c
 
 # create bmp_test.o from bmp_test.c
 bmp_test.o: bmp_test.c
@@ -43,8 +43,8 @@ bmp_test: $(bmp_objs)
 
 #--------------------------------ICM TEST CODE
 #create icm20948_lib.o from icm20948_lib.c
-icm20948_lib.o: ../icm20948_lib/icm20948_lib.c
-	$(CC) $(CFLAGS) -c ../icm20948_lib/icm20948_lib.c
+icm20948_lib.o: ../src/icm20948_lib/icm20948_lib.c
+	$(CC) $(CFLAGS) -c ../src/icm20948_lib/icm20948_lib.c
 
 # create icm_test.o from icm_test.c
 icm_test.o: icm_test.c
