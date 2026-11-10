@@ -1,8 +1,30 @@
 #include <stdio.h>
+//#include "i2c_driver.h"
+#include "bmp581_lib.h"
+
+uint8_t bmpAddr = 0x47;
+
+bmp581_data_t* myData;
 
 //main function
 int main(void)
 {
+
+    // BRIEF TEST CODE, DELETE LATER
+    int i2cHandle = i2cInit("/dev/i2c-1");
+
+    if(!bmp581Init(i2cHandle, BMP581_I2C_ADDR))
+    {
+        printf("BMP init failed!");
+    }
+
+    if(!bmp581_read_sensor(i2cHandle, BMP581_I2C_ADDR, myData))
+    {
+        printf("Bmp read failed!");
+    }
+
+    printf("%d", myData->pressure_pa);
+    return 0;
     //setup
 
     //intilialize the GPS module
