@@ -1,10 +1,10 @@
 #include <stdio.h>
-//#include "i2c_driver.h"
+#include "i2c_driver.h"
 #include "bmp581_lib.h"
 
 uint8_t bmpAddr = 0x47;
 
-bmp581_data_t* myData;
+bmp581_data_t myData;
 
 //main function
 int main(void)
@@ -12,18 +12,20 @@ int main(void)
 
     // BRIEF TEST CODE, DELETE LATER
     int i2cHandle = i2cInit("/dev/i2c-1");
-
-    if(!bmp581Init(i2cHandle, BMP581_I2C_ADDR))
+	
+	
+    if(bmp581_init(i2cHandle, BMP581_I2C_ADDR)<0)
     {
         printf("BMP init failed!");
     }
-
-    if(!bmp581_read_sensor(i2cHandle, BMP581_I2C_ADDR, myData))
+	
+    if(bmp581_read_sensor(i2cHandle, BMP581_I2C_ADDR, &myData)<0)
     {
         printf("Bmp read failed!");
     }
-
-    printf("%d", myData->pressure_pa);
+	
+    printf("%.2f\n", myData.pressure_pa);
+    printf("%.2f\n", myData.temperature_c);
     return 0;
     //setup
 

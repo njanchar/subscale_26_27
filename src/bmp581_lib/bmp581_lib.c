@@ -59,6 +59,12 @@ int bmp581_read_sensor(int i2c_file_descriptor, uint8_t dev_addr, bmp581_data_t 
 {
     //Buffer to hold raw sensor data
     uint8_t buf[6];
+    
+    if(data == NULL)
+    {
+		printf("Null pointer given");
+		return -1;
+	}
 
     // Read 6 consecutive bytes starting at TEMP_DATA_XLSB (0x1D):
     // buf[0]: Temp XLSB | buf[1]: Temp LSB | buf[2]: Temp MSB
@@ -74,7 +80,7 @@ int bmp581_read_sensor(int i2c_file_descriptor, uint8_t dev_addr, bmp581_data_t 
     }
 
     // Reconstruct raw 24-bit signed integers
-    int32_t raw_temp = (int32_t)((uint32_t)buf[2] << 16 | (uint32_t)buf[1] << 8 | buf[0]);
+    int32_t raw_temp = (int32_t)((uint32_t)buf[2] << 16 | (uint32_t)buf[1] << 8 | (uint32_t)buf[0]);
     // If the temperature value is negative (sign bit is set), extend the sign to 32 bits
     if (raw_temp & 0x800000) {
         // Sign-extend 24-bit to 32-bit signed
@@ -82,7 +88,7 @@ int bmp581_read_sensor(int i2c_file_descriptor, uint8_t dev_addr, bmp581_data_t 
     }
 
     // Reconstruct raw 24-bit signed integers for pressure
-    int32_t raw_press = (int32_t)((uint32_t)buf[5] << 16 | (uint32_t)buf[4] << 8 | buf[3]);
+    int32_t raw_press = (int32_t)((uint32_t)buf[5] << 16 | (uint32_t)buf[4] << 8 | (uint32_t)buf[3]);
     // If the pressure value is negative (sign bit is set), extend the sign to 32 bits
     if (raw_press & 0x800000) {
         raw_press = (int32_t)((uint32_t)raw_press | 0xFF000000U); // Sign-extend 24-bit to 32-bit signed
