@@ -6,6 +6,7 @@ add_subdirectory(src/bmp581_lib)
 add_subdirectory(src/gpsPA1010D_lib)
 add_subdirectory(src/icm20948_lib)
 add_subdirectory(src/icm20948)
+add_subdirectory(src/drv8848)
 
 add_executable(subscale main.c)
 
@@ -14,3 +15,4 @@ target_link_libraries(subscale PRIVATE bmp581_lib)
 target_link_libraries(subscale PRIVATE gpsPA1010D_lib)
 target_link_libraries(subscale PRIVATE icm20948_lib)
 target_link_libraries(subscale PRIVATE icm20948)
+target_link_libraries(subscale PRIVATE drv8848)
