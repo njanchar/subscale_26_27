@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "vision_algorithm.h"
 
+
+/*This function will take an image capture and save it. it will return 0 if the image capture was successful and zero if it was not successful*/
 int take_capture() {
     char filename[128];
     char command[512];
@@ -14,6 +14,7 @@ int take_capture() {
     // -n Headless mode no GUI preview
     // -t 2000 -> wait 2 seconds
     // --width 1280 --height 720
+    //right now object detection bounding boxes will drawn on the image from the already on board model from rpicam. I dont know if we want this oe just want to take the photos..?
     snprintf(command, sizeof(command),
              "rpicam-still -n -t 2000 --width 1280 --height 720 "
              "--post-process-file /usr/share/rpi-camera-assets/imx500_mobilenet_ssd.json "

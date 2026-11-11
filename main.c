@@ -127,3 +127,22 @@ int main(void)
     return 0;
 }
 
+//vision algorithm, separete function in main?
+void vision(){
+    //save intial icm posiiton
+
+    //take photo and rotate 70 degrees 5 times
+
+    //run model on 5 images
+
+    //compare image classification and confidence values
+
+    //if image is found....
+        //move motors to imu position
+        //call function to take image
+        //note final image file name or path
+
+    //every step will be logged in the compute log, so print every step there. 
+
+}
+
