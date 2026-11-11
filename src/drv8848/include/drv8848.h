@@ -3,7 +3,7 @@
 
 int drv8848Init();
 
-int cmdMotors(int cmdA, int cmdB);
+int cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB);
 
 int brakeMotors();
 
