@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h> // Required for exit()
 #include "i2c_driver.h"
 #include "bmp581_lib.h"
+#include <string.h>
 
 uint8_t bmpAddr = 0x47;
 
@@ -44,6 +46,22 @@ int main(void)
 
     //intilaizs state to pre flight
     flight_state current_state = PRE_FLIGHT;
+
+    //initialize variables to hold sensor data
+    
+    //initialize unique file name that does not exist in the directory to save the inflight data
+    FILE *fptr;
+    char *inflight_log_filename = get_unique_filename("inflight_log");
+    fptr = fopen(inflight_log_filename, "w");
+
+    //check if the inflight log file was created successfully
+    if (fptr == NULL) {
+        fprintf(stderr, "Error creating inflight log file: %s\n", inflight_log_filename);
+        return 1;
+    }
+
+    //intialize unique file name that does not exist in the directory to save the compute log data
+    char *compute_log_filename = get_unique_filename("compute_log");
 
     //save initial altitude from BMP sensor
 
