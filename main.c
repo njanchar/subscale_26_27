@@ -3,7 +3,7 @@
 #include "i2c_driver.h"
 #include "bmp581_lib.h"
 #include <string.h>
-#include "icm20948.h"
+#include "icm20948_lib.h"
 #include <time.h>
 
 uint8_t bmpAddr = 0x47;
@@ -16,10 +16,10 @@ int main(void)
 
     // // BRIEF TEST CODE, DELETE LATER
     // int i2cHandle = i2cInit("/dev/i2c-1");
-	// icmInit(i2cHandle);
-    // int16_t accel = 0;
+	 icmInit(i2cHandle);
+     int16_t accel = 0;
 
-    // getAccelX(i2cHandle, &accel);
+     getAccelX(i2cHandle, &accel);
     // printf("%d", accel);
     // return 0;
     //setup
