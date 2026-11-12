@@ -30,13 +30,17 @@ int i2cWrite(int file, uint8_t device_address, uint8_t reg, const uint8_t *messa
         return -1;
     }
     //Calls write() to send the single register address byte over the bus to select the internal target register.
+    /*
     if(write(file, &reg, 1)< 1)
     {
         return -1;
     }
+    */
+    uint8_t msg[] = {reg, *message}
+    message_len++;
     //Calls write() again to send the data bytes from the message buffer to the device. It checks if the number of bytes written matches the expected message length. If not, it returns -1 to indicate an error.
     // Explicit cast to size_t and ssize_t prevents sign-conversion errors
-    if(write(file, message,(size_t)message_len)!=(ssize_t)message_len)
+    if(write(file, &msg,(size_t)message_len)!=(ssize_t)message_len)
     {
         return -1;
     }
