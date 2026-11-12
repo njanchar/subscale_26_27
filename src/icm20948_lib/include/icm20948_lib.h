@@ -3,8 +3,9 @@
 
 #include <stdint.h>
 
-#define ICM20948_I2C_ADDR_PRIMARY   0x68
-#define ICM20948_I2C_ADDR_SECONDARY 0x69
+#define ICM20948_I2C_ADDR_PRIMARY   0x69
+#define ICM20948_I2C_ADDR_SECONDARY 0x68
+#define ICM20948_I2C_ADDR_MAG 0x0C
 
 // Register Bank Select
 #define ICM20948_REG_BANK_SEL       0x7F
@@ -14,6 +15,14 @@
 #define ICM20948_REG_USER_CTRL      0x03
 #define ICM20948_REG_PWR_MGMT_1     0x06
 #define ICM20948_REG_ACCEL_XOUT_H   0x2D
+#define ICM20948_INT_PIN_CFG_R		0x0F
+
+// Bank 2 Registers
+#define ACCEL_CONFIG_R 0x14
+
+// Magnetometer Registers
+#define HXL_R 0x11
+#define CNTL2_R 0x31
 
 #define ICM20948_WHO_AM_I_VAL       0xEA
 
@@ -26,8 +35,15 @@ typedef struct {
     float gyro_z_dps;
 } icm20948_data_t;
 
+typedef struct {
+	float x_mag;
+	float y_mag;
+	float z_mag;
+} icm20948_data_mag_t;
+
 int icm20948_select_bank(int i2c_fd, uint8_t dev_addr, uint8_t bank);
 int icm20948_init(int i2c_fd, uint8_t dev_addr);
 int icm20948_read_accel_gyro(int i2c_fd, uint8_t dev_addr, icm20948_data_t *data);
+int icm20948_read_mag(int i2c_fd, uint8_t dev_addr, icm20948_data_mag_t* data);
 
 #endif

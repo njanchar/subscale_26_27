@@ -16,10 +16,10 @@ int main(void)
 
     // // BRIEF TEST CODE, DELETE LATER
     // int i2cHandle = i2cInit("/dev/i2c-1");
-	 icmInit(i2cHandle);
-     int16_t accel = 0;
+	 //icmInit(i2cHandle);
+     //int16_t accel = 0;
 
-     getAccelX(i2cHandle, &accel);
+    // getAccelX(i2cHandle, &accel);
     // printf("%d", accel);
     // return 0;
     //setup

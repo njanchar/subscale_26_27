@@ -11,6 +11,8 @@
 #include <linux/i2c-dev.h>
 #include <string.h>
 
+uint8_t reset;
+
 int LSM6Init(int i2c_file);
 
 

@@ -43,7 +43,39 @@ int icm20948_init(int i2c_fd, uint8_t dev_addr)
     {
         return -1;
     }
-
+    
+    // Set user controls
+    uint8_t user_ctrl = 0x00;
+    if (i2cWrite(i2c_fd, dev_addr, ICM20948_REG_USER_CTRL, &user_ctrl, 1) < 0)
+    {
+        return -1;
+    }
+    
+    // Configure pasthrough mode to access magnetometer (address 0x0C)
+    uint8_t int_cfg = 0x02;
+    if (i2cWrite(i2c_fd, dev_addr, ICM20948_INT_PIN_CFG_R, &int_cfg, 1) < 0)
+    {
+        return -1;
+    }
+    
+    //4. Configure acceleration values to +- 2g (change bank to 2)
+	if (icm20948_select_bank(i2c_fd, dev_addr, 2) < 0)
+    {
+        return -1;
+    }
+    uint8_t accel_config = 0x01;
+    if(i2cWrite(i2c_fd, dev_addr, ACCEL_CONFIG_R, &accel_config, 1)<0)
+    {
+		return -1;
+	}
+	
+	// Configure magnetometer to continuous mode
+    uint8_t cntl2 = 0x02;
+    if(i2cWrite(i2c_fd, ICM20948_I2C_ADDR_MAG, CNTL2_R, &cntl2, 1)<0)
+    {
+		return -1;
+	}
+	
     // Wait for 50 ms to ensure the device is ready after waking up
     struct timespec req = { .tv_sec = 0, .tv_nsec = 50000000L }; // 50 ms = 50,000,000 ns
     nanosleep(&req, NULL);
@@ -77,10 +109,10 @@ int icm20948_read_accel_gyro(int i2c_fd, uint8_t dev_addr, icm20948_data_t *data
     int16_t raw_gy = (int16_t)((uint16_t)buf[8] << 8 | buf[9]);
     int16_t raw_gz = (int16_t)((uint16_t)buf[10] << 8 | buf[11]);
 
-    // Convert raw values to physical units
-    data->accel_x_g = (float)raw_ax / 16384.0f;
-    data->accel_y_g = (float)raw_ay / 16384.0f;
-    data->accel_z_g = (float)raw_az / 16384.0f;
+    // Convert raw values to physical units of m/s^2
+    data->accel_x_g = (float)raw_ax / 16384.0f * 9.80665;
+    data->accel_y_g = (float)raw_ay / 16384.0f * 9.80665;
+    data->accel_z_g = (float)raw_az / 16384.0f * 9.80665;
 
     data->gyro_x_dps = (float)raw_gx / 131.0f;
     data->gyro_y_dps = (float)raw_gy / 131.0f;
@@ -88,3 +120,22 @@ int icm20948_read_accel_gyro(int i2c_fd, uint8_t dev_addr, icm20948_data_t *data
 
     return 0;
 }
+
+int icm20948_read_mag(int i2c_fd, uint8_t dev_addr, icm20948_data_mag_t* data)
+{
+	uint8_t buf[6] = {0};
+	if (i2cRead(i2c_fd, ICM20948_I2C_ADDR_MAG, HXL_R, &(buf[0]), 6) < 0)
+    {
+        return -1;
+    }
+    int16_t raw_x = (int16_t)((uint16_t)buf[1] << 8 | buf[0]);
+    int16_t raw_y = (int16_t)((uint16_t)buf[3] << 8 | buf[2]);
+    int16_t raw_z = (int16_t)((uint16_t)buf[5] << 8 | buf[4]);
+    
+    data->x_mag = (float)(raw_x)*0.15;
+    data->y_mag = (float)(raw_y)*0.15;
+    data->z_mag = (float)(raw_z)*0.15;
+    
+    return 0;
+}
+    

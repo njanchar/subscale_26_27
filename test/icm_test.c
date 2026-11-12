@@ -23,6 +23,8 @@ int main(void)
     }
 
     icm20948_data_t imu_data;
+    icm20948_data_mag_t mag_data;
+    
     for (int i = 0; i < 5; i++)
     {
         if (icm20948_read_accel_gyro(i2c_fd, ICM20948_I2C_ADDR_PRIMARY, &imu_data) == 0)
@@ -31,6 +33,11 @@ int main(void)
                    imu_data.accel_x_g, imu_data.accel_y_g, imu_data.accel_z_g,
                    imu_data.gyro_x_dps, imu_data.gyro_y_dps, imu_data.gyro_z_dps);
         }
+        if(icm20948_read_mag(i2c_fd, ICM20948_I2C_ADDR_MAG, &mag_data) == 0)
+        {
+			printf("Magnetometer: X=%.2f Y=%.2f Z=%.2f \n",
+                   mag_data.x_mag, mag_data.y_mag, mag_data.z_mag);
+		}
         // 200 ms update rate
         struct timespec req = { .tv_sec = 0, .tv_nsec = 200000000L }; // 200 ms = 200,000,000 ns
         nanosleep(&req, NULL);

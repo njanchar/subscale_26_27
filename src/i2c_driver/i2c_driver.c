@@ -36,7 +36,7 @@ int i2cWrite(int file, uint8_t device_address, uint8_t reg, const uint8_t *messa
         return -1;
     }
     */
-    uint8_t msg[] = {reg, *message}
+    uint8_t msg[] = {reg, *message};
     message_len++;
     //Calls write() again to send the data bytes from the message buffer to the device. It checks if the number of bytes written matches the expected message length. If not, it returns -1 to indicate an error.
     // Explicit cast to size_t and ssize_t prevents sign-conversion errors

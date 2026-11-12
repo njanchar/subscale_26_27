@@ -34,7 +34,7 @@ int getAccelX(int bus, int16_t* accel)
 {
     uint8_t buf[2] = {0};
 
-    if(i2cRead(bus, ICM_ADDR, ACCEL_XOUT_H_R, &buf, 2)<0)
+    if(i2cRead(bus, ICM_ADDR, ACCEL_XOUT_H_R, &(buf[0]), 2)<0)
     {
         return -1;
     }

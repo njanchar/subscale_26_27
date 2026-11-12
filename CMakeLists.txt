@@ -8,6 +8,7 @@ add_subdirectory(src/icm20948_lib)
 add_subdirectory(src/icm20948)
 add_subdirectory(src/drv8848)
 add_subdirectory(src/LSM6DSOX)
+add_subdirectory(test)
 
 add_executable(subscale main.c)
 
