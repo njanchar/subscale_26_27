@@ -5,54 +5,67 @@
 #include <string.h>
 #include "icm20948_lib.h"
 #include <time.h>
+#include <stdbool.h>
+#include "drv8848.h"
+#include <math.h>
 
-uint8_t bmpAddr = 0x47;
-
-bmp581_data_t myData;
-
-//main function
-int main(void)
-{
-
-    // // BRIEF TEST CODE, DELETE LATER
-    // int i2cHandle = i2cInit("/dev/i2c-1");
-	 //icmInit(i2cHandle);
-     //int16_t accel = 0;
-
-    // getAccelX(i2cHandle, &accel);
-    // printf("%d", accel);
-    // return 0;
-    //setup
-
-    //intilialize the GPS module
-    //intialize the icm20948
-    //intialize the bmp
-
-    //initialze the motors
-
-    //intialize state machine
-    typedef enum {
+typedef enum {
         PRE_FLIGHT,
         IN_FLIGHT,
         POST_FLIGHT
     } flight_state;
 
+uint8_t bmpAddr = 0x47;
+
+bmp581_data_t bmpData;
+icm20948_data_t icmData;
+icm20948_data_mag_t icmMagData;
+timespec ts;
+
+const char i2c = "/dev/i2c-1";
+
+// timing variables
+uint64_t startTime, launchStartTime, landingStartTime;
+
+//main function
+int main(void)
+{
+
+    //setup i2c connection
+    i2cInit(&i2c);
+
+    //intilialize the GPS module
+
+    //intialize the icm20948
+    if(icm20948_init(i2c, ICM20948_I2C_ADDR_PRIMARY)<0)
+    {
+        printf("ICM init failed!");
+        return -1;
+    }
+
+    //intialize the bmp
+
+    //initialze the motors
+    drv8848Init();
+
+    //intialize state machine
     //intilaizs state to pre flight
     flight_state current_state = PRE_FLIGHT;
 
-    //intialize all motors
-
     //set all current motor states to zero, print out states to make sure
+    cmdMotors(0,0,0,0);
 
-    //initialize variables to hold sensor data
-
-    //intialize variabels to hold start times of each flight stages
-
-    //intialize variables to hold current times in each of the flight stages
+    //initialize variables to hold sensor data - already done
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    // convert time to ms
+    startTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
+    //intialize variabels to hold start times of each flight stages - already done
+    //intialize variables to hold current times in each of the flight stages - don't need it
     
     //initialize unique file name that does not exist in the directory to save the inflight data
     // FILE *fptr;
     // char *inflight_log_filename = get_unique_filename("inflight_log");
+    // this data will go in the data folder
 
     //open inflight file so data can be stored there
     // fptr = fopen(inflight_log_filename, "w");
@@ -66,9 +79,10 @@ int main(void)
     //intialize unique file name that does not exist in the directory to save the compute log data
     //char *compute_log_filename = get_unique_filename("compute_log");
 
+
     //save initial altitude from BMP sensor to get offset so we can get difference from this
 
-    //check to make sure all sensors intialized, if not output error
+    //check to make sure all sensors intialized, if not output error - already did this
 
     //main loop that continually runs
     do{
@@ -76,13 +90,20 @@ int main(void)
         {
             case PRE_FLIGHT:
             //get acceleration data from ICM20948
+            icm20948_read_accel_gyro(i2c, ICM20948_I2C_ADDR_PRIMARY, *icmData);
 
             //get altitude data from BMP
             
-            //check to see if the acceleration squared is greater than 4 m/s^2
-
+            //check to see if the acceleration squared is greater than 4 m/s^2 4Gs, not m/s^2
+            float accelSq = sqrt(icmData.accel_x_g^2 + accel_y_g^2 + accel_x_g^2);
+            if(accelSq > 4*9.81)
+            {
+                current_state = IN_FLIGHT;
+                clock_gettime(CLOCK_MONOTONIC, &ts);
+                // convert time to ms
+                launchStartTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
+            }
             //check to see if the altitude is greater than 10 meters above the initial altitude saved
-
             //if both conditions are met, then change the state to IN_FLIGHT and save intial inflight start time
 
                 break;
@@ -97,6 +118,17 @@ int main(void)
                 //state started change the state to post flight
 
                 //save intial post flight time
+                clock_gettime(CLOCK_MONOTONIC, &ts);
+                // convert time to ms
+                uint64_t currentTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
+         
+                if(currentTime-launchStartTime > 3*60*1000)
+                {
+                    clock_gettime(CLOCK_MONOTONIC, &ts);
+                    // convert time to ms
+                    landingStartTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
+                    current_state = POST_FLIGHT;
+                }
                 break;
             case POST_FLIGHT:
                 //close inflight txt file and open post flight compute log
@@ -121,7 +153,7 @@ int main(void)
                 return 1;
         }
 
-
+        // Need a delay here
     }while(1);
 
     return 0;
