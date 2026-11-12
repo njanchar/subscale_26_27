@@ -57,8 +57,24 @@ icm_objs := icm_test.o icm20948_lib.o i2c_driver.o
 icm_test: $(icm_objs)
 	$(CC) $(CFLAGS) -o icm_test $(icm_objs)
 
+#--------------------------------MOTOR TEST CODE
+#create motor_lib.o from motor_lib.c
+motor_lib.o: ../src/motor_lib/motor_lib.c
+	$(CC) $(CFLAGS) -c ../src/motor_lib/motor_lib.c
+
+# create motor_test.o from motor_test.c
+motor_test.o: motor_test.c
+	$(CC) $(CFLAGS) -c motor_test.c
+
+# motor objects (no i2c needed)
+motor_objs := motor_test.o motor_lib.o
+
+# Create motor_test executable
+motor_test: $(motor_objs)
+	$(CC) $(CFLAGS) -o motor_test $(motor_objs)
+
 # All executables
-executable_names := bmp_test icm_test
+executable_names := bmp_test icm_test motor_test
 
 # Make all
 all: $(executable_names)
