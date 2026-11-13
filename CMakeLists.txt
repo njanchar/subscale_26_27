@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Subscale C)
+project(Subscale CXX)
 
 add_subdirectory(src/i2c_driver)
 add_subdirectory(src/bmp581_lib)
