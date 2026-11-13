@@ -9,7 +9,7 @@ add_subdirectory(src/drv8848)
 add_subdirectory(src/LSM6DSOX)
 add_subdirectory(test)
 
-add_executable(subscale main.c)
+add_executable(subscale main.cpp)
 
 target_link_libraries(subscale PRIVATE i2c_driver)
 target_link_libraries(subscale PRIVATE bmp581_lib)
