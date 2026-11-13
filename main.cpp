@@ -30,20 +30,23 @@ using libcamera::Stream;
 
 namespace fs = std::filesystem;
 
+//initalize the state machine types
 typedef enum {
         PRE_FLIGHT,
         IN_FLIGHT,
         POST_FLIGHT
     } flight_state;
 
-uint8_t bmpAddr = 0x47;
-
+//intializing sensors
 bmp581_data_t bmpData;
 icm20948_data_t icmData;
 icm20948_data_mag_t icmMagData;
 timespec ts;
 
+//init i2c bus
 const char* i2c = "/dev/i2c-1";
+
+//initalizing acceleration squared
 float accelSq = 0.0f;
 
 // timing variables
@@ -57,54 +60,76 @@ int main(void)
     i2cInit(&i2c);
 
     //intilialize the GPS module
+	if(pa1010d_init(i2c, PA1010D_I2C_ADDR)<0){
+		printf("GPS init failed!\n");
+        return -1;
+
+	}
 
     //intialize the icm20948
     if(icm20948_init(i2c, ICM20948_I2C_ADDR_PRIMARY)<0)
     {
-        printf("ICM init failed!");
+        printf("ICM init failed!\n");
         return -1;
     }
 
     //intialize the bmp
+	if(bmp581_init(i2c, BMP581_I2C_ADDR)<0){
+		printf("BMP init failed!\n");
+        return -1;
+
+	}
 
     //initialze the motors
     drv8848Init();
 
-    //intialize state machine
     //intilaizs state to pre flight
     flight_state current_state = PRE_FLIGHT;
 
     //set all current motor states to zero, print out states to make sure
     cmdMotors(0,0,0,0);
+	fprint("Motor states set to zero\n");
 
-    //initialize variables to hold sensor data - already done
+	//getting current time
     clock_gettime(CLOCK_MONOTONIC, &ts);
     // convert time to ms
     startTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
-    //intialize variabels to hold start times of each flight stages - already done
-    //intialize variables to hold current times in each of the flight stages - don't need it
-    
+
     //initialize unique file name that does not exist in the directory to save the inflight data
-    // FILE *fptr;
-    // char *inflight_log_filename = get_unique_filename("inflight_log");
+    FILE *fptr;
+    char *inflight_log_filename = get_unique_filename("inflight_log");
     // this data will go in the data folder
 
     //open inflight file so data can be stored there
-    // fptr = fopen(inflight_log_filename, "w");
+    fptr = fopen(inflight_log_filename, "w");
+
+	//write headers for file
+	fprintf(log_file, "time,alt_m,press_pa,temp_c,ax,ay,az,gx,gy,gz,mx,my,mz\n");
 
     //check if the inflight log file was created successfully
-    // if (fptr == NULL) {
-    //     fprintf(stderr, "Error creating inflight log file: %s\n", inflight_log_filename);
-    //     return 1;
-    // }
+	if (fptr == NULL) {
+         fprintf(stderr, "Error creating inflight log file: %s\n", inflight_log_filename);
+         return 1;
+    }
 
     //intialize unique file name that does not exist in the directory to save the compute log data
-    //char *compute_log_filename = get_unique_filename("compute_log");
-
+    char *compute_log_filename = get_unique_filename("compute_log");
 
     //save initial altitude from BMP sensor to get offset so we can get difference from this
+	bmp_read_sensor(bmpData);
+	float init_alt = bmpData.altitude_m;
 
-    //check to make sure all sensors intialized, if not output error - already did this
+	//create currentAlt variable
+	float current_alt = 0;
+
+	//init current_time from laucnh start
+	float current_time_from_launch = 0;
+
+	//counters to track how many times the acceleration squared is greater than 4 and the change in altitude is greater than 20 meters from intial altitude
+	//should have five consectuive true conditions before moving to inflight
+	int preflight_thresholds_reached = 0;
+	int inflight_thresholds_reached = 0;
+	int previous_inflight_alt = 0;
 
     //main loop that continually runs
     
@@ -116,36 +141,65 @@ int main(void)
             icm20948_read_accel_gyro(i2c, ICM20948_I2C_ADDR_PRIMARY, &icmData);
 
             //get altitude data from BMP
-            
-            //check to see if the acceleration squared is greater than 4 m/s^2 4Gs, not m/s^2
-            accelSq = sqrt(icmData.accel_x_g^2 + icmData.accel_y_g^2 + icmData.accel_x_g^2);
-            if(accelSq > 4*9.81)
+			bmp_read_sensor(bmpData);
+			current_alt = bmpData.altitude_m;
+
+            //check to see if the acceleration squared is greater than 4 m/s^2 4Gs
+            accelSq = icmData.accel_x_g^2 + icmData.accel_y_g^2 + icmData.accel_x_g^2;
+            if(accelSq > 4*9.81 && (current_alt - init_alt)>20)
             {
+				preflight_thresholds_reached++;
+            }
+			else{
+				preflight_thresholds_reached = 0;
+			}
+
+            //if both conditions are met five times in a row, then change the state to IN_FLIGHT and save intial inflight start time
+			if(preflight_thresholds_reached>=5){
                 current_state = IN_FLIGHT;
                 clock_gettime(CLOCK_MONOTONIC, &ts);
                 // convert time to ms
                 launchStartTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
-            }
-            //check to see if the altitude is greater than 10 meters above the initial altitude saved
-            //if both conditions are met, then change the state to IN_FLIGHT and save intial inflight start time
+				//saving last altitude val
+				previous_inflight_alt = current_alt;
+
+			}
 
                 break;
             case IN_FLIGHT:
 
                 //get time from in flight start
-                //read ICM20948 data
+				clock_gettime(CLOCK_MONOTONIC, &ts);
+				current_time_from_launch = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL - launchStartTime;
+                
+				//read ICM20948 data
+				icm20948_read_accel_gyro(i2c, ICM20948_I2C_ADDR_PRIMARY, &icmData);
+				icm20948_read_mag(i2c, ICM20948_I2C_ADDR_PRIMARY, &icmMagData);
+				
                 //read BMP data
+				bmp_read_sensor(bmpData);
+				
                 //save all data to file
+				log_inflight_data(fptr, current_time_from_launch, &bmpData, &icmData, &icmMagData);
 
-                //if the acceleration is less than 2 m/s^2 and the change in altitude is less than idk 10 meterrs over the last few samples, or it is has been like 5 mintues since the inflight
+                //if the acceleration is less than 2 m/s^2 and the change in altitude is less than idk 5 meterrs over the last few samples, or it is has been like 5 mintues since the inflight
                 //state started change the state to post flight
+				current_alt = bmpData.altitude_m;
+				accelSq = icmData.accel_x_g^2 + icmData.accel_y_g^2 + icmData.accel_x_g^2;
+
+				if((current_alt - previous_inflight_alt) <5 && accelSq<2){
+					inflight_thresholds_reached++;
+				}
+				else{
+					inflight_thresholds_reached = 0;
+				}
 
                 //save intial post flight time
                 clock_gettime(CLOCK_MONOTONIC, &ts);
                 // convert time to ms
                 uint64_t currentTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
          
-                if(currentTime-launchStartTime > 3*60*1000)
+                if(inflight_thresholds_reached == 5 || (currentTime-launchStartTime > 3*60*1000))
                 {
                     clock_gettime(CLOCK_MONOTONIC, &ts);
                     // convert time to ms
@@ -154,7 +208,11 @@ int main(void)
                 }
                 break;
             case POST_FLIGHT:
-                //close inflight txt file and open post flight compute log
+                
+				//flushes remaining inflight data, closes the inflight log, and opens the compute log
+				print_inflight_data_to_file(fptr);
+				fclose(fptr);
+				fopen(fptr, compute_log_filename, "w");
 
                 //check orientation and change it to make the mast stand straight up (when extended)
 

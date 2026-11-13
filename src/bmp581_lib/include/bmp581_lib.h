@@ -27,10 +27,13 @@
 // Expected Chip ID
 #define BMP581_CHIP_ID_VAL        0x50
 
+#define SEA_LEVEL_PRESSURE_PA 101325
+
 // Data structure to hold sensor readings
 typedef struct {
     float temperature_c;
     float pressure_pa;
+    float altitude_m;
 } bmp581_data_t;
 
 int bmp581_init(int i2c_file_descriptor, uint8_t dev_addr);

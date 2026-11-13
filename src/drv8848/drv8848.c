@@ -15,7 +15,7 @@
 #define BIN1 11
 #define BIN2 13
 
-int drv8848Init()
+void drv8848Init()
 {
     wiringPiSetup();
     pinMode(NFAULT, INPUT);
@@ -23,11 +23,12 @@ int drv8848Init()
     pinMode(AIN1, PWM_OUTPUT);
     pinMode(AIN2, PWM_OUTPUT);
     pinMode(BIN1, PWM_OUTPUT);
-    pinMode(BIN1, PWM_OUTPUT);
+    pinMode(BIN2, PWM_OUTPUT);
     digitalWrite(NSLEEP, HIGH);
 }
 
-int cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB)
+//Sets the speed (0 to 1023) and direction (true for forward, false for reverse)
+void cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB)
 {
     if(fwdA)
     {
@@ -41,7 +42,7 @@ int cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB)
     }
     if(fwdB)
     {
-        pwmWrite(BIN1, cmdA);
+        pwmWrite(BIN1, cmdB);
         pwmWrite(BIN2, 0);
     }
     else
@@ -51,7 +52,8 @@ int cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB)
     }
 }
 
-int brakeMotors()
+//Drives all four motor control pins to 1023 (100% duty cycle / logic HIGH)
+void brakeMotors()
 {
     pwmWrite(AIN1, 1023);
     pwmWrite(AIN2, 1023);

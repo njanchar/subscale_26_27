@@ -98,5 +98,8 @@ int bmp581_read_sensor(int i2c_file_descriptor, uint8_t dev_addr, bmp581_data_t 
     data->temperature_c = (float)raw_temp / 65536.0f;
     data->pressure_pa   = (float)raw_press / 64.0f;
 
+    //calcualte altitute in meters
+    data->altitude_m = 44330.0 * (1.0 - pow(pressure_pa / SEA_LEVEL_PRESSURE_PA, 0.1903));
+
     return 0;
 }

@@ -2,10 +2,10 @@
 #define DRV8848_H
 #include <stdbool.h>
 
-int drv8848Init();
+void drv8848Init();
 
-int cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB);
+void cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB);
 
-int brakeMotors();
+void brakeMotors();
 
 #endif
