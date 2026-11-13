@@ -16,13 +16,13 @@
 #include <sys/signalfd.h>
 #include <sys/stat.h>
 
-#include "core/frame_info.hpp"
-#include "core/rpicam_app.hpp"
-#include "core/still_options.hpp"
+#include "/home/rocketpayload/subscale/rpicam-apps/core/frame_info.hpp"
+#include "/home/rocketpayload/subscale/rpicam-apps/core/rpicam_app.hpp"
+#include "/home/rocketpayload/subscale/rpicam-apps/core/still_options.hpp"
 
-#include "output/output.hpp"
+#include "/home/rocketpayload/subscale/rpicam-apps/output/output.hpp"
 
-#include "image/image.hpp"
+#include "/home/rocketpayload/subscale/rpicam-apps/image/image.hpp"
 
 using namespace std::chrono_literals;
 using namespace std::placeholders;
@@ -43,7 +43,8 @@ icm20948_data_t icmData;
 icm20948_data_mag_t icmMagData;
 timespec ts;
 
-const char i2c = "/dev/i2c-1";
+const char* i2c = "/dev/i2c-1";
+float accelSq = 0.0f;
 
 // timing variables
 uint64_t startTime, launchStartTime, landingStartTime;
@@ -106,17 +107,18 @@ int main(void)
     //check to make sure all sensors intialized, if not output error - already did this
 
     //main loop that continually runs
+    
     do{
         switch(current_state)
         {
             case PRE_FLIGHT:
             //get acceleration data from ICM20948
-            icm20948_read_accel_gyro(i2c, ICM20948_I2C_ADDR_PRIMARY, *icmData);
+            icm20948_read_accel_gyro(i2c, ICM20948_I2C_ADDR_PRIMARY, &icmData);
 
             //get altitude data from BMP
             
             //check to see if the acceleration squared is greater than 4 m/s^2 4Gs, not m/s^2
-            float accelSq = sqrt(icmData.accel_x_g^2 + accel_y_g^2 + accel_x_g^2);
+            accelSq = sqrt(icmData.accel_x_g^2 + icmData.accel_y_g^2 + icmData.accel_x_g^2);
             if(accelSq > 4*9.81)
             {
                 current_state = IN_FLIGHT;
