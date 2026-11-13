@@ -131,6 +131,11 @@ int main(void)
 	int inflight_thresholds_reached = 0;
 	int previous_inflight_alt = 0;
 
+	//defining booleans 
+	bool mastExtended = false
+	bool visionComplete = false
+	bool post_flight_complete = false;
+
     //main loop that continually runs
     
     do{
@@ -205,27 +210,44 @@ int main(void)
                     // convert time to ms
                     landingStartTime = (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)ts.tv_nsec / 1000000ULL;
                     current_state = POST_FLIGHT;
+
+					//flushes remaining inflight data, closes the inflight log, and opens the compute log
+					print_inflight_data_to_file(fptr);
+					fclose(fptr);
+					fopen(fptr, compute_log_filename, "w");
                 }
                 break;
             case POST_FLIGHT:
-                
-				//flushes remaining inflight data, closes the inflight log, and opens the compute log
-				print_inflight_data_to_file(fptr);
-				fclose(fptr);
-				fopen(fptr, compute_log_filename, "w");
-
                 //check orientation and change it to make the mast stand straight up (when extended)
+				orientation();
 
-                //extend mast 
+                //extend mast
+				if (mastExtended == false){
+					//move motor up
+				}
 
-                //once mast is extended, run vision algorithm
-                    //continue to check orientation throughout this process in the case something changes
+				if (mastExtended == true && visionComplete == false){
+					//run vision algorithm
 
-                //once vision algorithm is done, save and close compute file
 
-                //bring mast and scanning subsystems back into DUDE
+					//at the end, vision complete is true
+					visionComplete = true;
 
-                //turn all motors off
+				}
+
+				//if 
+				if(mastExtended == true && visionComplete == true){
+					//retract mast
+
+					//after mast fully retracted
+					post_flight_complete = true;
+				}
+
+				if (post_flight_complete == true){
+					//turn all motors off
+					fclose(file);
+					while(1);
+				}
 
                 //close compute file 
                 break;
@@ -256,6 +278,10 @@ void vision(){
         //note final image file name or path
 
     //every step will be logged in the compute log, so print every step there. 
+
+}
+
+void orientation(){
 
 }
 
