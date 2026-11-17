@@ -8,4 +8,6 @@ void cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB);
 
 void brakeMotors();
 
+void offMotors();
+
 #endif

@@ -60,3 +60,11 @@ void brakeMotors()
     pwmWrite(BIN1, 1023);
     pwmWrite(BIN2, 1023);
 }
+
+void offMotors()
+{
+    pwmWrite(AIN1, 0);
+    pwmWrite(AIN2, 0);
+    pwmWrite(BIN1, 0);
+    pwmWrite(BIN2, 0);
+}

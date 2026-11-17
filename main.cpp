@@ -41,7 +41,7 @@ typedef enum {
 bmp581_data_t bmpData;
 icm20948_data_t icmData;
 icm20948_data_mag_t icmMagData;
-timespec ts;
+struct timespec ts;
 
 //init i2c bus
 const char* i2c = "/dev/i2c-1";
