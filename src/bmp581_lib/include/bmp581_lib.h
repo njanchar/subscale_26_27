@@ -2,6 +2,7 @@
 #define BMP581_H
 
 #include <stdint.h>
+#include <math.h>
 
 #define BMP581_I2C_ADDR 0x47 // SDO connected to VDDIO
 

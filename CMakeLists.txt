@@ -10,7 +10,9 @@ add_subdirectory(src/icm20948_lib)
 add_subdirectory(src/drv8848)
 add_subdirectory(src/LSM6DSOX)
 add_subdirectory(test)
+add_subdirectory(src/timer_driver)
 
+#[[
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBCAMERA REQUIRED libcamera)
 
@@ -25,3 +27,4 @@ target_link_libraries(subscale PRIVATE LSM6DSOX)
 
 target_include_directories(subscale PRIVATE ${LIBCAMERA_INCLUDE_DIRS})
 target_link_libraries(subscale PRIVATE ${LIBCAMERA_LIBRARIES})
+]]#

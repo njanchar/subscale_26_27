@@ -15,6 +15,7 @@
 #define BIN1 11
 #define BIN2 13
 
+
 void drv8848Init()
 {
     wiringPiSetup();
