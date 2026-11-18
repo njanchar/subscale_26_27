@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/icm_test.dir/link.d CMakeFiles/icm_test.dir/icm_test.c.o -o icm_test  ../src/i2c_driver/libi2c_driver.a ../src/icm20948_lib/libicm20948_lib.a ../src/i2c_driver/libi2c_driver.a

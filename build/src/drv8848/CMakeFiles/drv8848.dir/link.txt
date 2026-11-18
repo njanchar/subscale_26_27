@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdrv8848.a CMakeFiles/drv8848.dir/drv8848.c.o
+/usr/bin/ranlib libdrv8848.a

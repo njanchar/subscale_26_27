@@ -8,12 +8,12 @@
 #include <linux/i2c-dev.h>
 #include <wiringPi.h>
 
-#define NFAULT 22
-#define NSLEEP 19
-#define AIN1 18
-#define AIN2 16
-#define BIN1 11
-#define BIN2 13
+#define NFAULT 6            //physical 22    bcm 25
+#define NSLEEP 12          //physical 19     bcm 10
+#define AIN1 5            //physical 18      bcm 24
+#define AIN2 4           //physical 16       bcm 23
+#define BIN1 0          //physical 11        bcm 17
+#define BIN2 2         //physical 13         bcm 27
 
 
 void drv8848Init()

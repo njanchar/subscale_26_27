@@ -1,0 +1,2 @@
+/usr/bin/ar qc libicm20948_lib.a CMakeFiles/icm20948_lib.dir/icm20948_lib.c.o
+/usr/bin/ranlib libicm20948_lib.a

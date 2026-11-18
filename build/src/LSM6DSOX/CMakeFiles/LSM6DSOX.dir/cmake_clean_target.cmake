@@ -1,0 +1,3 @@
+file(REMOVE_RECURSE
+  "libLSM6DSOX.a"
+)

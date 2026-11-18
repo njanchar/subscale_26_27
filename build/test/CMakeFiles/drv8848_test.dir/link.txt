@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/drv8848_test.dir/link.d CMakeFiles/drv8848_test.dir/drv8848_test.c.o -o drv8848_test  ../src/i2c_driver/libi2c_driver.a ../src/drv8848/libdrv8848.a ../src/timer_driver/libtimer_driver.a -lwiringPi

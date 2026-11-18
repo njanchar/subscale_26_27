@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLSM6DSOX.a CMakeFiles/LSM6DSOX.dir/LSM6DSOX.c.o
+/usr/bin/ranlib libLSM6DSOX.a

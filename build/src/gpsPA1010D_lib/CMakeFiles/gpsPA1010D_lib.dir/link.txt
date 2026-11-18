@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgpsPA1010D_lib.a CMakeFiles/gpsPA1010D_lib.dir/gpsPA1010D_lib.c.o
+/usr/bin/ranlib libgpsPA1010D_lib.a

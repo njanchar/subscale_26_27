@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbmp581_lib.a CMakeFiles/bmp581_lib.dir/bmp581_lib.c.o
+/usr/bin/ranlib libbmp581_lib.a

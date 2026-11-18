@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtimer_driver.a CMakeFiles/timer_driver.dir/timer_driver.c.o
+/usr/bin/ranlib libtimer_driver.a
