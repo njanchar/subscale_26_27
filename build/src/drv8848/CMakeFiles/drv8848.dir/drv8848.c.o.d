@@ -77,4 +77,5 @@ src/drv8848/CMakeFiles/drv8848.dir/drv8848.c.o: \
  /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
- /usr/include/asm-generic/posix_types.h /usr/local/include/wiringPi.h
+ /usr/include/asm-generic/posix_types.h /usr/local/include/wiringPi.h \
+ /usr/local/include/softPwm.h

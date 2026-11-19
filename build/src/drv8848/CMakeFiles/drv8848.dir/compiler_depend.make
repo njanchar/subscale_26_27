@@ -93,6 +93,7 @@ src/drv8848/CMakeFiles/drv8848.dir/drv8848.c.o: /home/rocketpayload/subscale/sub
   /usr/lib/linux/uapi/arm64/asm/ioctls.h \
   /usr/lib/linux/uapi/arm64/asm/posix_types.h \
   /usr/lib/linux/uapi/arm64/asm/types.h \
+  /usr/local/include/softPwm.h \
   /usr/local/include/wiringPi.h
 
 
@@ -239,6 +240,8 @@ src/drv8848/CMakeFiles/drv8848.dir/drv8848.c.o: /home/rocketpayload/subscale/sub
 /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
+
+/usr/local/include/softPwm.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 

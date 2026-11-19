@@ -94,5 +94,6 @@ src/drv8848/CMakeFiles/drv8848.dir/drv8848.c.o
  /usr/lib/linux/uapi/arm64/asm/ioctls.h
  /usr/lib/linux/uapi/arm64/asm/posix_types.h
  /usr/lib/linux/uapi/arm64/asm/types.h
+ /usr/local/include/softPwm.h
  /usr/local/include/wiringPi.h
 
