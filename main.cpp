@@ -264,7 +264,7 @@ int main(void)
 
 //vision algorithm, separete function in main?
 void vision(){
-    //save intial icm posiiton
+    //save intial icm position
 
     //take photo and rotate 70 degrees 5 times
 
@@ -282,6 +282,7 @@ void vision(){
 }
 
 void orientation(){
+
 
 }
 
