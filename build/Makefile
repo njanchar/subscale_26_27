@@ -241,6 +241,19 @@ lsm_test/fast:
 .PHONY : lsm_test/fast
 
 #=============================================================================
+# Target rules for targets named alignment_test
+
+# Build rule for target.
+alignment_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alignment_test
+.PHONY : alignment_test
+
+# fast build rule for target.
+alignment_test/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/alignment_test.dir/build.make test/CMakeFiles/alignment_test.dir/build
+.PHONY : alignment_test/fast
+
+#=============================================================================
 # Target rules for targets named timer_driver
 
 # Build rule for target.
@@ -262,6 +275,7 @@ help:
 	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... alignment_test"
 	@echo "... bmp581_lib"
 	@echo "... drv8848"
 	@echo "... drv8848_test"

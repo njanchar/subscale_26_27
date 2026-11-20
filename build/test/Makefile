@@ -165,6 +165,44 @@ lsm_test/fast:
 	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/lsm_test.dir/build.make test/CMakeFiles/lsm_test.dir/build
 .PHONY : lsm_test/fast
 
+# Convenience name for target.
+test/CMakeFiles/alignment_test.dir/rule:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/alignment_test.dir/rule
+.PHONY : test/CMakeFiles/alignment_test.dir/rule
+
+# Convenience name for target.
+alignment_test: test/CMakeFiles/alignment_test.dir/rule
+.PHONY : alignment_test
+
+# fast build rule for target.
+alignment_test/fast:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/alignment_test.dir/build.make test/CMakeFiles/alignment_test.dir/build
+.PHONY : alignment_test/fast
+
+alignment_test.o: alignment_test.c.o
+.PHONY : alignment_test.o
+
+# target to build an object file
+alignment_test.c.o:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/alignment_test.dir/build.make test/CMakeFiles/alignment_test.dir/alignment_test.c.o
+.PHONY : alignment_test.c.o
+
+alignment_test.i: alignment_test.c.i
+.PHONY : alignment_test.i
+
+# target to preprocess a source file
+alignment_test.c.i:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/alignment_test.dir/build.make test/CMakeFiles/alignment_test.dir/alignment_test.c.i
+.PHONY : alignment_test.c.i
+
+alignment_test.s: alignment_test.c.s
+.PHONY : alignment_test.s
+
+# target to generate assembly for a file
+alignment_test.c.s:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/alignment_test.dir/build.make test/CMakeFiles/alignment_test.dir/alignment_test.c.s
+.PHONY : alignment_test.c.s
+
 drv8848_test.o: drv8848_test.c.o
 .PHONY : drv8848_test.o
 
@@ -246,9 +284,13 @@ help:
 	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... alignment_test"
 	@echo "... drv8848_test"
 	@echo "... icm_test"
 	@echo "... lsm_test"
+	@echo "... alignment_test.o"
+	@echo "... alignment_test.i"
+	@echo "... alignment_test.s"
 	@echo "... drv8848_test.o"
 	@echo "... drv8848_test.i"
 	@echo "... drv8848_test.s"

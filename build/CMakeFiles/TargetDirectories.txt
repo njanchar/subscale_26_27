@@ -21,6 +21,7 @@
 /home/rocketpayload/subscale/subscale_26_27/build/test/CMakeFiles/icm_test.dir
 /home/rocketpayload/subscale/subscale_26_27/build/test/CMakeFiles/drv8848_test.dir
 /home/rocketpayload/subscale/subscale_26_27/build/test/CMakeFiles/lsm_test.dir
+/home/rocketpayload/subscale/subscale_26_27/build/test/CMakeFiles/alignment_test.dir
 /home/rocketpayload/subscale/subscale_26_27/build/test/CMakeFiles/edit_cache.dir
 /home/rocketpayload/subscale/subscale_26_27/build/test/CMakeFiles/rebuild_cache.dir
 /home/rocketpayload/subscale/subscale_26_27/build/src/timer_driver/CMakeFiles/timer_driver.dir

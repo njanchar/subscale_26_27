@@ -79,5 +79,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "test/CMakeFiles/icm_test.dir/DependInfo.cmake"
   "test/CMakeFiles/drv8848_test.dir/DependInfo.cmake"
   "test/CMakeFiles/lsm_test.dir/DependInfo.cmake"
+  "test/CMakeFiles/alignment_test.dir/DependInfo.cmake"
   "src/timer_driver/CMakeFiles/timer_driver.dir/DependInfo.cmake"
   )

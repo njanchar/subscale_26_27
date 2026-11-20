@@ -1,7 +1,7 @@
 add_executable(icm_test icm_test.c)
 add_executable(drv8848_test drv8848_test.c)
 add_executable(lsm_test lsm_test.c)
-add_execuatable(alignment_test alignment_test.c)
+add_executable(alignment_test alignment_test.c)
 
 target_link_libraries(lsm_test PRIVATE i2c_driver)
 target_link_libraries(lsm_test PRIVATE lsm6dsv16x)
