@@ -18,10 +18,10 @@
  * Preprocessor macros substituted at compile time (zero runtime memory overhead).
  * The active address is selected by the hardware logic level on the SDO/SA0 pin:
  */
-#define LSM6DSV16X_I2C_ADDR             0x6A  // SDO/SA0 tied to GND
+#define LSM6DSV16X_I2C_ADDR             0x6B  // SDO/SA0 tied to GND
 
 // Factory-programmed device identifier returned by the WHO_AM_I register
-#define LSM6DSV16X_WHO_AM_I_VAL         0x70
+#define LSM6DSV16X_WHO_AM_I_VAL         0x71
 
 /*
  * Device Register Map:

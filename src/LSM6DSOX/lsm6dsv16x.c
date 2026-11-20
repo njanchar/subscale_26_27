@@ -158,9 +158,10 @@ int lsm6dsv16x_read_accel(lsm6dsv16x_t *dev, float accel_g[3])
     }
 
     // Reconstruct signed 16-bit integers and scale by factory g/LSB factor
-    accel_g[0] = (float)bytes_to_int16(buf[0], buf[1]) * LSM6DSV16X_XL_SENSITIVITY_2G;
-    accel_g[1] = (float)bytes_to_int16(buf[2], buf[3]) * LSM6DSV16X_XL_SENSITIVITY_2G;
-    accel_g[2] = (float)bytes_to_int16(buf[4], buf[5]) * LSM6DSV16X_XL_SENSITIVITY_2G;
+    accel_g[0] = (float)bytes_to_int16(buf[0], buf[1])* LSM6DSV16X_XL_SENSITIVITY_2G;
+    accel_g[1] = (float)bytes_to_int16(buf[2], buf[3])* LSM6DSV16X_XL_SENSITIVITY_2G;
+    accel_g[2] = (float)bytes_to_int16(buf[4], buf[5])* LSM6DSV16X_XL_SENSITIVITY_2G;
+     
 
     return 0;
 }
@@ -204,7 +205,7 @@ int lsm6dsv16x_read_all(lsm6dsv16x_t *dev, lsm6dsv16x_data_t *data)
      *   [6..11]  OUTX/Y/Z_A (0x28..0x2D)
      */
     uint8_t buf[12];
-    if (i2cRead(dev->i2c_fd, dev->addr, LSM6DSV16X_REG_OUTX_L_G, buf, 12) < 0) {
+    if (i2cRead(dev->i2c_fd, dev->addr, LSM6DSV16X_REG_OUTX_L_G, &(buf[0]), 12) < 0) {
         return -1;
     }
 
@@ -214,9 +215,9 @@ int lsm6dsv16x_read_all(lsm6dsv16x_t *dev, lsm6dsv16x_data_t *data)
     data->gyro_dps[2] = (float)bytes_to_int16(buf[4], buf[5]) * LSM6DSV16X_GY_SENSITIVITY_125DPS;
 
     // Convert accelerometer X, Y, Z linear accelerations (bytes 6..11)
-    data->accel_g[0] = (float)bytes_to_int16(buf[6],  buf[7])  * LSM6DSV16X_XL_SENSITIVITY_2G;
-    data->accel_g[1] = (float)bytes_to_int16(buf[8],  buf[9])  * LSM6DSV16X_XL_SENSITIVITY_2G;
-    data->accel_g[2] = (float)bytes_to_int16(buf[10], buf[11]) * LSM6DSV16X_XL_SENSITIVITY_2G;
+    data->accel_g[0] = (float)bytes_to_int16(buf[6],  buf[7])* LSM6DSV16X_XL_SENSITIVITY_2G * 9.80665;
+    data->accel_g[1] = (float)bytes_to_int16(buf[8],  buf[9])* LSM6DSV16X_XL_SENSITIVITY_2G * 9.80665;
+    data->accel_g[2] = (float)bytes_to_int16(buf[10], buf[11])* LSM6DSV16X_XL_SENSITIVITY_2G * 9.80665;
 
     return 0;
 }

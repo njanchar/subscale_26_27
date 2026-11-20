@@ -228,6 +228,19 @@ drv8848_test/fast:
 .PHONY : drv8848_test/fast
 
 #=============================================================================
+# Target rules for targets named lsm_test
+
+# Build rule for target.
+lsm_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lsm_test
+.PHONY : lsm_test
+
+# fast build rule for target.
+lsm_test/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/lsm_test.dir/build.make test/CMakeFiles/lsm_test.dir/build
+.PHONY : lsm_test/fast
+
+#=============================================================================
 # Target rules for targets named timer_driver
 
 # Build rule for target.
@@ -257,6 +270,7 @@ help:
 	@echo "... icm20948_lib"
 	@echo "... icm_test"
 	@echo "... lsm6dsv16x"
+	@echo "... lsm_test"
 	@echo "... timer_driver"
 .PHONY : help
 

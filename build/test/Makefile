@@ -151,6 +151,20 @@ drv8848_test/fast:
 	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/drv8848_test.dir/build.make test/CMakeFiles/drv8848_test.dir/build
 .PHONY : drv8848_test/fast
 
+# Convenience name for target.
+test/CMakeFiles/lsm_test.dir/rule:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/lsm_test.dir/rule
+.PHONY : test/CMakeFiles/lsm_test.dir/rule
+
+# Convenience name for target.
+lsm_test: test/CMakeFiles/lsm_test.dir/rule
+.PHONY : lsm_test
+
+# fast build rule for target.
+lsm_test/fast:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/lsm_test.dir/build.make test/CMakeFiles/lsm_test.dir/build
+.PHONY : lsm_test/fast
+
 drv8848_test.o: drv8848_test.c.o
 .PHONY : drv8848_test.o
 
@@ -199,6 +213,30 @@ icm_test.c.s:
 	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/icm_test.dir/build.make test/CMakeFiles/icm_test.dir/icm_test.c.s
 .PHONY : icm_test.c.s
 
+lsm_test.o: lsm_test.c.o
+.PHONY : lsm_test.o
+
+# target to build an object file
+lsm_test.c.o:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/lsm_test.dir/build.make test/CMakeFiles/lsm_test.dir/lsm_test.c.o
+.PHONY : lsm_test.c.o
+
+lsm_test.i: lsm_test.c.i
+.PHONY : lsm_test.i
+
+# target to preprocess a source file
+lsm_test.c.i:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/lsm_test.dir/build.make test/CMakeFiles/lsm_test.dir/lsm_test.c.i
+.PHONY : lsm_test.c.i
+
+lsm_test.s: lsm_test.c.s
+.PHONY : lsm_test.s
+
+# target to generate assembly for a file
+lsm_test.c.s:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/lsm_test.dir/build.make test/CMakeFiles/lsm_test.dir/lsm_test.c.s
+.PHONY : lsm_test.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -210,12 +248,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... drv8848_test"
 	@echo "... icm_test"
+	@echo "... lsm_test"
 	@echo "... drv8848_test.o"
 	@echo "... drv8848_test.i"
 	@echo "... drv8848_test.s"
 	@echo "... icm_test.o"
 	@echo "... icm_test.i"
 	@echo "... icm_test.s"
+	@echo "... lsm_test.o"
+	@echo "... lsm_test.i"
+	@echo "... lsm_test.s"
 .PHONY : help
 
 
