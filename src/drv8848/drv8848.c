@@ -39,21 +39,21 @@ void cmdMotors(int cmdA, bool fwdA, int cmdB, bool fwdB)
     if(fwdA)
     {
         softPwmWrite(AIN1, cmdA);
-        softPwmWrite(AIN2, 0);
+        digitalWrite(AIN2, 0);
     }
     else
     {
-        softPwmWrite(AIN1, 0);
+        digitalWrite(AIN1, 0);
         softPwmWrite(AIN2, cmdA);
     }
     if(fwdB)
     {
         softPwmWrite(BIN1, cmdB);
-        softPwmWrite(BIN2, 0);
+        digitalWrite(BIN2, 0);
     }
     else
     {
-        softPwmWrite(BIN1, 0);
+        digitalWrite(BIN1, 0);
         softPwmWrite(BIN2, cmdB);
     }
 }

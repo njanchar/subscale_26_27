@@ -124,42 +124,42 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/rule:
-	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/rule
-.PHONY : src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/rule
+src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/rule:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/rule
+.PHONY : src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/rule
 
 # Convenience name for target.
-LSM6DSOX: src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/rule
-.PHONY : LSM6DSOX
+lsm6dsv16x: src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/rule
+.PHONY : lsm6dsv16x
 
 # fast build rule for target.
-LSM6DSOX/fast:
-	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build.make src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build
-.PHONY : LSM6DSOX/fast
+lsm6dsv16x/fast:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build.make src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build
+.PHONY : lsm6dsv16x/fast
 
-LSM6DSOX.o: LSM6DSOX.c.o
-.PHONY : LSM6DSOX.o
+lsm6dsv16x.o: lsm6dsv16x.c.o
+.PHONY : lsm6dsv16x.o
 
 # target to build an object file
-LSM6DSOX.c.o:
-	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build.make src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/LSM6DSOX.c.o
-.PHONY : LSM6DSOX.c.o
+lsm6dsv16x.c.o:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build.make src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/lsm6dsv16x.c.o
+.PHONY : lsm6dsv16x.c.o
 
-LSM6DSOX.i: LSM6DSOX.c.i
-.PHONY : LSM6DSOX.i
+lsm6dsv16x.i: lsm6dsv16x.c.i
+.PHONY : lsm6dsv16x.i
 
 # target to preprocess a source file
-LSM6DSOX.c.i:
-	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build.make src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/LSM6DSOX.c.i
-.PHONY : LSM6DSOX.c.i
+lsm6dsv16x.c.i:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build.make src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/lsm6dsv16x.c.i
+.PHONY : lsm6dsv16x.c.i
 
-LSM6DSOX.s: LSM6DSOX.c.s
-.PHONY : LSM6DSOX.s
+lsm6dsv16x.s: lsm6dsv16x.c.s
+.PHONY : lsm6dsv16x.s
 
 # target to generate assembly for a file
-LSM6DSOX.c.s:
-	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build.make src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/LSM6DSOX.c.s
-.PHONY : LSM6DSOX.c.s
+lsm6dsv16x.c.s:
+	cd /home/rocketpayload/subscale/subscale_26_27/build && $(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build.make src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/lsm6dsv16x.c.s
+.PHONY : lsm6dsv16x.c.s
 
 # Help Target
 help:
@@ -170,10 +170,10 @@ help:
 	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... LSM6DSOX"
-	@echo "... LSM6DSOX.o"
-	@echo "... LSM6DSOX.i"
-	@echo "... LSM6DSOX.s"
+	@echo "... lsm6dsv16x"
+	@echo "... lsm6dsv16x.o"
+	@echo "... lsm6dsv16x.i"
+	@echo "... lsm6dsv16x.s"
 .PHONY : help
 
 

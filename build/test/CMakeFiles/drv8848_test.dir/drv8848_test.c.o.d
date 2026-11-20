@@ -44,4 +44,5 @@ test/CMakeFiles/drv8848_test.dir/drv8848_test.c.o: \
  /usr/include/aarch64-linux-gnu/bits/types/timer_t.h \
  /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
- /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h
+ /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
+ /usr/local/include/wiringPi.h

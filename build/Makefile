@@ -189,17 +189,17 @@ drv8848/fast:
 .PHONY : drv8848/fast
 
 #=============================================================================
-# Target rules for targets named LSM6DSOX
+# Target rules for targets named lsm6dsv16x
 
 # Build rule for target.
-LSM6DSOX: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 LSM6DSOX
-.PHONY : LSM6DSOX
+lsm6dsv16x: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lsm6dsv16x
+.PHONY : lsm6dsv16x
 
 # fast build rule for target.
-LSM6DSOX/fast:
-	$(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build.make src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/build
-.PHONY : LSM6DSOX/fast
+lsm6dsv16x/fast:
+	$(MAKE) $(MAKESILENT) -f src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build.make src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/build
+.PHONY : lsm6dsv16x/fast
 
 #=============================================================================
 # Target rules for targets named icm_test
@@ -249,7 +249,6 @@ help:
 	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... LSM6DSOX"
 	@echo "... bmp581_lib"
 	@echo "... drv8848"
 	@echo "... drv8848_test"
@@ -257,6 +256,7 @@ help:
 	@echo "... i2c_driver"
 	@echo "... icm20948_lib"
 	@echo "... icm_test"
+	@echo "... lsm6dsv16x"
 	@echo "... timer_driver"
 .PHONY : help
 

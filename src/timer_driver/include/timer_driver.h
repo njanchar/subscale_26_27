@@ -5,6 +5,6 @@
 #include<stdint.h>
 #include<time.h>
 
-uint64_t millis(struct timespec* ts);
+uint64_t milli(struct timespec* ts);
 
 #endif

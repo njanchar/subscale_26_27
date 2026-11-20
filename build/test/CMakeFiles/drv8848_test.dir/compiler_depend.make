@@ -49,7 +49,8 @@ test/CMakeFiles/drv8848_test.dir/drv8848_test.c.o: /home/rocketpayload/subscale/
   /usr/lib/gcc/aarch64-linux-gnu/14/include/stdarg.h \
   /usr/lib/gcc/aarch64-linux-gnu/14/include/stdbool.h \
   /usr/lib/gcc/aarch64-linux-gnu/14/include/stddef.h \
-  /usr/lib/gcc/aarch64-linux-gnu/14/include/stdint.h
+  /usr/lib/gcc/aarch64-linux-gnu/14/include/stdint.h \
+  /usr/local/include/wiringPi.h
 
 test/drv8848_test: src/drv8848/libdrv8848.a \
   src/i2c_driver/libi2c_driver.a \
@@ -85,6 +86,8 @@ test/drv8848_test: src/drv8848/libdrv8848.a \
 /usr/lib/aarch64-linux-gnu/crtn.o:
 
 /usr/lib/aarch64-linux-gnu/crti.o:
+
+/usr/lib/aarch64-linux-gnu/Scrt1.o:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_FILE.h:
 
@@ -192,6 +195,8 @@ src/i2c_driver/libi2c_driver.a:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/include/stdbool.h:
 
+/usr/local/include/wiringPi.h:
+
 src/timer_driver/libtimer_driver.a:
 
 /lib/aarch64-linux-gnu/libc.so.6:
@@ -205,5 +210,3 @@ src/timer_driver/libtimer_driver.a:
 /usr/include/time.h:
 
 /usr/lib/aarch64-linux-gnu/libc_nonshared.a:
-
-/usr/lib/aarch64-linux-gnu/Scrt1.o:

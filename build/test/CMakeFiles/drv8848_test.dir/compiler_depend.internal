@@ -51,6 +51,7 @@ test/CMakeFiles/drv8848_test.dir/drv8848_test.c.o
  /usr/lib/gcc/aarch64-linux-gnu/14/include/stdbool.h
  /usr/lib/gcc/aarch64-linux-gnu/14/include/stddef.h
  /usr/lib/gcc/aarch64-linux-gnu/14/include/stdint.h
+ /usr/local/include/wiringPi.h
 
 test/drv8848_test
  /home/rocketpayload/subscale/subscale_26_27/build/src/drv8848/libdrv8848.a

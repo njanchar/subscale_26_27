@@ -75,7 +75,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/gpsPA1010D_lib/CMakeFiles/gpsPA1010D_lib.dir/DependInfo.cmake"
   "src/icm20948_lib/CMakeFiles/icm20948_lib.dir/DependInfo.cmake"
   "src/drv8848/CMakeFiles/drv8848.dir/DependInfo.cmake"
-  "src/LSM6DSOX/CMakeFiles/LSM6DSOX.dir/DependInfo.cmake"
+  "src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/DependInfo.cmake"
   "test/CMakeFiles/icm_test.dir/DependInfo.cmake"
   "test/CMakeFiles/drv8848_test.dir/DependInfo.cmake"
   "src/timer_driver/CMakeFiles/timer_driver.dir/DependInfo.cmake"

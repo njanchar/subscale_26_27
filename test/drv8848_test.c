@@ -5,9 +5,27 @@
 struct timespec ts;
 
 #define ENCA 15
-#define ENCB 16
+#define ENCB 14
 
 volatile int count = 0;
+
+void countPulseA() 
+{
+    if (digitalRead(ENCB) != digitalRead(ENCA)) {
+        count++;
+    } else {
+        count--;
+    }
+}
+
+void countPulseB() 
+{
+    if (digitalRead(ENCB) == digitalRead(ENCA)) {
+        count++;
+    } else {
+        count--;
+    }
+}
 
 int main()
 {
@@ -17,10 +35,11 @@ int main()
     pinMode(ENCB, INPUT);
     pullUpDnControl(ENCA, PUD_UP);
     pullUpDnControl(ENCB, PUD_UP);
-
-    wiringPiISR(ENCA, INT_EDGE_RISING, &countPulse);
-    uint64_t startTime = millis(&ts);
-    while(millis(&ts)-startTime < 10000){} //run for10s
+	printf("hi!");
+    wiringPiISR(ENCA, INT_EDGE_BOTH, &countPulseA);
+    wiringPiISR(ENCB, INT_EDGE_BOTH, &countPulseB);
+    uint64_t startTime = milli(&ts);
+    while(milli(&ts)-startTime < 10000){} //run for10s
     printf("%d", count);
     brakeMotors(); 
     offMotors();
@@ -28,11 +47,4 @@ int main()
     return 0;
 }
 
-void countPulse() 
-{
-    if (digitalRead(ENCB) == HIGH) {
-        count++;
-    } else {
-        count--;
-    }
-}
+

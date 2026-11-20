@@ -1,5 +1,5 @@
-add_library(LSM6DSOX STATIC
-            LSM6DSOX.c)
+add_library(lsm6dsv16x STATIC
+            lsm6dsv16x.c)
 
-target_include_directories(LSM6DSOX PUBLIC include)
-target_link_libraries(LSM6DSOX PRIVATE i2c_driver)
+target_include_directories(lsm6dsv16x PUBLIC include)
+target_link_libraries(lsm6dsv16x PRIVATE i2c_driver)
