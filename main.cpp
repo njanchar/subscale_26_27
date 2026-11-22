@@ -15,6 +15,10 @@
 #include <sstream>
 #include <sys/signalfd.h>
 #include <sys/stat.h>
+#include "constants.h"
+
+#include <wiringPi.h>
+#include <softServo.h>
 
 #include "/home/rocketpayload/subscale/rpicam-apps/core/frame_info.hpp"
 #include "/home/rocketpayload/subscale/rpicam-apps/core/rpicam_app.hpp"
@@ -42,6 +46,9 @@ bmp581_data_t bmpData;
 icm20948_data_t icmData;
 icm20948_data_mag_t icmMagData;
 struct timespec ts;
+
+//setting up
+softServoSetup(scanner_servo_pin);
 
 //init i2c bus
 const char* i2c = "/dev/i2c-1";
@@ -228,6 +235,7 @@ int main(void)
 
 				if (mastExtended == true && visionComplete == false){
 					//run vision algorithm
+					vision();
 
 
 					//at the end, vision complete is true
@@ -266,7 +274,12 @@ int main(void)
 void vision(){
     //save intial icm position
 
+
     //take photo and rotate 70 degrees 5 times
+	for(int curr_photo; curr_photo <num_photos_to_take; curr_photo++){
+		softServoWrite(scanner_servo_pin, 1023);
+
+	}
 
     //run model on 5 images
 
@@ -438,7 +451,6 @@ static int get_key_or_signal(StillOptions const *options, pollfd p[1])
 }
 
 // The main even loop for the application.
-
 static void event_loop(RPiCamStillApp &app)
 {
 	StillOptions const *options = app.GetOptions();
