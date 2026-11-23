@@ -12,6 +12,13 @@ add_subdirectory(src/LSM6DSOX)
 add_subdirectory(test)
 add_subdirectory(src/timer_driver)
 
+add_executable(subscale main2.cpp)
+
+target_link_libraries(subscale PRIVATE i2c_driver)
+target_link_libraries(subscale PRIVATE icm20948_lib)
+target_link_libraries(subscale PRIVATE drv8848)
+target_link_libraries(subscale PRIVATE LSM6DSOX)
+
 #[[
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBCAMERA REQUIRED libcamera)
