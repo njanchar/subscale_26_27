@@ -1,3 +1,4 @@
+/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles/subscale.dir
 /home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles/edit_cache.dir
 /home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles/rebuild_cache.dir
 /home/rocketpayload/subscale/subscale_26_27/build/src/i2c_driver/CMakeFiles/i2c_driver.dir

@@ -15,6 +15,7 @@
 
 #define STATUS_XLDA_MASK        0x01  // Bit 0 (0000 0001): Accelerometer data available
 #define STATUS_GDA_MASK         0x02  // Bit 1 (0000 0010): Gyroscope data available
+#define ACCEL_16_G				0x02
 
 /*
  * Reconstructs a signed 16-bit integer from two consecutive 8-bit registers
@@ -106,11 +107,15 @@ int lsm6dsv16x_init(lsm6dsv16x_t *dev, int i2c_fd, uint8_t addr)
      * Both sensors boot into power-down mode (ODR = 0x00) at reset.
      * Write 120 Hz ODR to CTRL1 and CTRL2 to start measurements while leaving
      * full-scale ranges at +/- 2g and +/- 125 dps.
+     * sike we going to +/- 16g
      */
     if (write_reg(dev, LSM6DSV16X_REG_CTRL1, CTRL_ODR_120HZ) < 0) {
         return -1;
     }
     if (write_reg(dev, LSM6DSV16X_REG_CTRL2, CTRL_ODR_120HZ) < 0) {
+        return -1;
+    }
+    if (write_reg(dev, LSM6DSV16X_REG_CTRL8, ACCEL_16_G) < 0) {
         return -1;
     }
 

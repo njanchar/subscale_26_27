@@ -124,6 +124,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named subscale
+
+# Build rule for target.
+subscale: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 subscale
+.PHONY : subscale
+
+# fast build rule for target.
+subscale/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/build
+.PHONY : subscale/fast
+
+#=============================================================================
 # Target rules for targets named i2c_driver
 
 # Build rule for target.
@@ -266,6 +279,30 @@ timer_driver/fast:
 	$(MAKE) $(MAKESILENT) -f src/timer_driver/CMakeFiles/timer_driver.dir/build.make src/timer_driver/CMakeFiles/timer_driver.dir/build
 .PHONY : timer_driver/fast
 
+main2.o: main2.cpp.o
+.PHONY : main2.o
+
+# target to build an object file
+main2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/main2.cpp.o
+.PHONY : main2.cpp.o
+
+main2.i: main2.cpp.i
+.PHONY : main2.i
+
+# target to preprocess a source file
+main2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/main2.cpp.i
+.PHONY : main2.cpp.i
+
+main2.s: main2.cpp.s
+.PHONY : main2.s
+
+# target to generate assembly for a file
+main2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/main2.cpp.s
+.PHONY : main2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -285,7 +322,11 @@ help:
 	@echo "... icm_test"
 	@echo "... lsm6dsv16x"
 	@echo "... lsm_test"
+	@echo "... subscale"
 	@echo "... timer_driver"
+	@echo "... main2.o"
+	@echo "... main2.i"
+	@echo "... main2.s"
 .PHONY : help
 
 

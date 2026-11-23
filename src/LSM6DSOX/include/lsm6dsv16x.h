@@ -34,12 +34,13 @@
 #define LSM6DSV16X_REG_STATUS_REG       0x1E  // Data-ready status flags for accel and gyro
 #define LSM6DSV16X_REG_OUTX_L_G         0x22  // Base address of 6-byte gyroscope output (0x22 to 0x27)
 #define LSM6DSV16X_REG_OUTX_L_A         0x28  // Base address of 6-byte accelerometer output (0x28 to 0x2D)
+#define LSM6DSV16X_REG_CTRL8            0x17 // address of control register, 
 
 /*
  * At reset, the sensor defaults to +/- 2g full-scale for the accelerometer and
  * +/- 125 degrees/sec full-scale for the gyroscope.
  */
-#define LSM6DSV16X_XL_SENSITIVITY_2G    0.000061f  // 0.061 mg per raw LSB
+#define LSM6DSV16X_XL_SENSITIVITY_2G    0.000488f  // 0.061 mg per raw LSB, 0.488 mg/LSB for 16g
 #define LSM6DSV16X_GY_SENSITIVITY_125DPS 0.004375f // 4.375 mdps per raw LSB
 
 /*

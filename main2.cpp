@@ -1,5 +1,3 @@
-// include headers
-#include <stdint.h>
 #include "i2c_driver.h"
 #include "drv8848.h"
 #include "timer_driver.h"
@@ -10,6 +8,7 @@
 #include <errno.h>
 #include <string.h>
 #include <softServo.h>
+#include <stdint.h>
 
 struct timespec ts;
 
@@ -21,18 +20,18 @@ volatile int count = 0;
 void countPulseA() 
 {
     if (digitalRead(ENCB) != digitalRead(ENCA)) {
-        count++;
+        count = count + 1;
     } else {
-        count--;
+        count = count - 1;
     }
 }
 
 void countPulseB() 
 {
     if (digitalRead(ENCB) == digitalRead(ENCA)) {
-        count++;
+        count = count + 1;
     } else {
-        count--;
+        count = count - 1;
     }
 }
 
@@ -87,9 +86,9 @@ int main()
         return 1;
     }
 
-    if (lsm6dsv16x_init(&imu, fd, LSM6DSV16X_I2C_ADDR) < 0) {
+    if (lsm6dsv16x_init(&imu, i2c_fd, LSM6DSV16X_I2C_ADDR) < 0) {
         fprintf(stderr, "Failed to initialize LSM6DSV16X\n");
-        close(fd);
+        close(i2c_fd);
         return 1;
     }
 

@@ -72,36 +72,35 @@ include CMakeFiles/subscale.dir/flags.make
 CMakeFiles/subscale.dir/codegen:
 .PHONY : CMakeFiles/subscale.dir/codegen
 
-CMakeFiles/subscale.dir/main.cpp.o: CMakeFiles/subscale.dir/flags.make
-CMakeFiles/subscale.dir/main.cpp.o: /home/rocketpayload/subscale/subscale_26_27/main.cpp
-CMakeFiles/subscale.dir/main.cpp.o: CMakeFiles/subscale.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/subscale.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/subscale.dir/main.cpp.o -MF CMakeFiles/subscale.dir/main.cpp.o.d -o CMakeFiles/subscale.dir/main.cpp.o -c /home/rocketpayload/subscale/subscale_26_27/main.cpp
+CMakeFiles/subscale.dir/main2.cpp.o: CMakeFiles/subscale.dir/flags.make
+CMakeFiles/subscale.dir/main2.cpp.o: /home/rocketpayload/subscale/subscale_26_27/main2.cpp
+CMakeFiles/subscale.dir/main2.cpp.o: CMakeFiles/subscale.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/subscale.dir/main2.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/subscale.dir/main2.cpp.o -MF CMakeFiles/subscale.dir/main2.cpp.o.d -o CMakeFiles/subscale.dir/main2.cpp.o -c /home/rocketpayload/subscale/subscale_26_27/main2.cpp
 
-CMakeFiles/subscale.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/subscale.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rocketpayload/subscale/subscale_26_27/main.cpp > CMakeFiles/subscale.dir/main.cpp.i
+CMakeFiles/subscale.dir/main2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/subscale.dir/main2.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rocketpayload/subscale/subscale_26_27/main2.cpp > CMakeFiles/subscale.dir/main2.cpp.i
 
-CMakeFiles/subscale.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/subscale.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rocketpayload/subscale/subscale_26_27/main.cpp -o CMakeFiles/subscale.dir/main.cpp.s
+CMakeFiles/subscale.dir/main2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/subscale.dir/main2.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rocketpayload/subscale/subscale_26_27/main2.cpp -o CMakeFiles/subscale.dir/main2.cpp.s
 
 # Object files for target subscale
 subscale_OBJECTS = \
-"CMakeFiles/subscale.dir/main.cpp.o"
+"CMakeFiles/subscale.dir/main2.cpp.o"
 
 # External object files for target subscale
 subscale_EXTERNAL_OBJECTS =
 
-subscale: CMakeFiles/subscale.dir/main.cpp.o
+subscale: CMakeFiles/subscale.dir/main2.cpp.o
 subscale: CMakeFiles/subscale.dir/build.make
 subscale: CMakeFiles/subscale.dir/compiler_depend.ts
 subscale: src/i2c_driver/libi2c_driver.a
-subscale: src/bmp581_lib/libbmp581_lib.a
-subscale: src/gpsPA1010D_lib/libgpsPA1010D_lib.a
 subscale: src/icm20948_lib/libicm20948_lib.a
 subscale: src/drv8848/libdrv8848.a
-subscale: src/LSM6DSOX/libLSM6DSOX.a
+subscale: src/LSM6DSOX/liblsm6dsv16x.a
+subscale: src/timer_driver/libtimer_driver.a
 subscale: src/i2c_driver/libi2c_driver.a
 subscale: CMakeFiles/subscale.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable subscale"

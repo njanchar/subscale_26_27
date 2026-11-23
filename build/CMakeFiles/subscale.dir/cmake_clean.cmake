@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/subscale.dir/link.d"
-  "CMakeFiles/subscale.dir/main.cpp.o"
-  "CMakeFiles/subscale.dir/main.cpp.o.d"
+  "CMakeFiles/subscale.dir/main2.cpp.o"
+  "CMakeFiles/subscale.dir/main2.cpp.o.d"
   "subscale"
   "subscale.pdb"
 )

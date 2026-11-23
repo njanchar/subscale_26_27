@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/libcamera -I/home/rocketpayload/subscale/subscale_26_27/src/i2c_driver/include -I/home/rocketpayload/subscale/subscale_26_27/src/bmp581_lib/include -I/home/rocketpayload/subscale/subscale_26_27/src/gpsPA1010D_lib/include -I/home/rocketpayload/subscale/subscale_26_27/src/icm20948_lib/include -I/home/rocketpayload/subscale/subscale_26_27/src/drv8848/include -I/home/rocketpayload/subscale/subscale_26_27/src/LSM6DSOX/include
+CXX_INCLUDES = -I/home/rocketpayload/subscale/subscale_26_27/src/i2c_driver/include -I/home/rocketpayload/subscale/subscale_26_27/src/icm20948_lib/include -I/home/rocketpayload/subscale/subscale_26_27/src/drv8848/include -I/home/rocketpayload/subscale/subscale_26_27/src/LSM6DSOX/include -I/home/rocketpayload/subscale/subscale_26_27/src/timer_driver/include
 
 CXX_FLAGS = -std=gnu++20
 

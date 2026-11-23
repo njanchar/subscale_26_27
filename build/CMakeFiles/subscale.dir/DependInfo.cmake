@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/rocketpayload/subscale/subscale_26_27/main.cpp" "CMakeFiles/subscale.dir/main.cpp.o" "gcc" "CMakeFiles/subscale.dir/main.cpp.o.d"
+  "/home/rocketpayload/subscale/subscale_26_27/main2.cpp" "CMakeFiles/subscale.dir/main2.cpp.o" "gcc" "CMakeFiles/subscale.dir/main2.cpp.o.d"
   "" "subscale" "gcc" "CMakeFiles/subscale.dir/link.d"
   )
 

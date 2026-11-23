@@ -63,6 +63,7 @@ CMAKE_BINARY_DIR = /home/rocketpayload/subscale/subscale_26_27/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/subscale.dir/all
 all: src/i2c_driver/all
 all: src/bmp581_lib/all
 all: src/gpsPA1010D_lib/all
@@ -74,6 +75,7 @@ all: src/timer_driver/all
 .PHONY : all
 
 # The main recursive "codegen" target.
+codegen: CMakeFiles/subscale.dir/codegen
 codegen: src/i2c_driver/codegen
 codegen: src/bmp581_lib/codegen
 codegen: src/gpsPA1010D_lib/codegen
@@ -96,6 +98,7 @@ preinstall: src/timer_driver/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/subscale.dir/clean
 clean: src/i2c_driver/clean
 clean: src/bmp581_lib/clean
 clean: src/gpsPA1010D_lib/clean
@@ -266,6 +269,42 @@ test/clean: test/CMakeFiles/drv8848_test.dir/clean
 test/clean: test/CMakeFiles/lsm_test.dir/clean
 test/clean: test/CMakeFiles/alignment_test.dir/clean
 .PHONY : test/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/subscale.dir
+
+# All Build rule for target.
+CMakeFiles/subscale.dir/all: src/i2c_driver/CMakeFiles/i2c_driver.dir/all
+CMakeFiles/subscale.dir/all: src/icm20948_lib/CMakeFiles/icm20948_lib.dir/all
+CMakeFiles/subscale.dir/all: src/drv8848/CMakeFiles/drv8848.dir/all
+CMakeFiles/subscale.dir/all: src/LSM6DSOX/CMakeFiles/lsm6dsv16x.dir/all
+CMakeFiles/subscale.dir/all: src/timer_driver/CMakeFiles/timer_driver.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=21,22 "Built target subscale"
+.PHONY : CMakeFiles/subscale.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/subscale.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/subscale.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles 0
+.PHONY : CMakeFiles/subscale.dir/rule
+
+# Convenience name for target.
+subscale: CMakeFiles/subscale.dir/rule
+.PHONY : subscale
+
+# codegen rule for target.
+CMakeFiles/subscale.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=21,22 "Finished codegen for target subscale"
+.PHONY : CMakeFiles/subscale.dir/codegen
+
+# clean rule for target.
+CMakeFiles/subscale.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/subscale.dir/build.make CMakeFiles/subscale.dir/clean
+.PHONY : CMakeFiles/subscale.dir/clean
 
 #=============================================================================
 # Target rules for target src/i2c_driver/CMakeFiles/i2c_driver.dir
@@ -601,7 +640,7 @@ test/CMakeFiles/alignment_test.dir/clean:
 src/timer_driver/CMakeFiles/timer_driver.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/timer_driver/CMakeFiles/timer_driver.dir/build.make src/timer_driver/CMakeFiles/timer_driver.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/timer_driver/CMakeFiles/timer_driver.dir/build.make src/timer_driver/CMakeFiles/timer_driver.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=21,22 "Built target timer_driver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=23,24 "Built target timer_driver"
 .PHONY : src/timer_driver/CMakeFiles/timer_driver.dir/all
 
 # Build rule for subdir invocation for target.
@@ -618,7 +657,7 @@ timer_driver: src/timer_driver/CMakeFiles/timer_driver.dir/rule
 # codegen rule for target.
 src/timer_driver/CMakeFiles/timer_driver.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/timer_driver/CMakeFiles/timer_driver.dir/build.make src/timer_driver/CMakeFiles/timer_driver.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=21,22 "Finished codegen for target timer_driver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/rocketpayload/subscale/subscale_26_27/build/CMakeFiles --progress-num=23,24 "Finished codegen for target timer_driver"
 .PHONY : src/timer_driver/CMakeFiles/timer_driver.dir/codegen
 
 # clean rule for target.

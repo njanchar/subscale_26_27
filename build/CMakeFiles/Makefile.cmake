@@ -70,6 +70,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/subscale.dir/DependInfo.cmake"
   "src/i2c_driver/CMakeFiles/i2c_driver.dir/DependInfo.cmake"
   "src/bmp581_lib/CMakeFiles/bmp581_lib.dir/DependInfo.cmake"
   "src/gpsPA1010D_lib/CMakeFiles/gpsPA1010D_lib.dir/DependInfo.cmake"
