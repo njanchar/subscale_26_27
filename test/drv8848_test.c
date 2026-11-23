@@ -38,7 +38,8 @@ int main()
     wiringPiISR(ENCA, INT_EDGE_BOTH, &countPulseA);
     wiringPiISR(ENCB, INT_EDGE_BOTH, &countPulseB);
     uint64_t startTime = milli(&ts);
-    while(count < 8800){} //run for10s
+    while(count > -9000){} //run for10s
+    // negative is up, positive is down for mast
     printf("%d", count);
     brakeMotors(); 
     offMotors();
