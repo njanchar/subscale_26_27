@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+// why not declared as consts? or macros?
 //all motor pin numbers -- not really needed..?
 int scanner_servo_pin = 12;
 int B_in1_motor2 = 11;

@@ -35,11 +35,10 @@ int main()
     pinMode(ENCB, INPUT);
     pullUpDnControl(ENCA, PUD_UP);
     pullUpDnControl(ENCB, PUD_UP);
-	printf("hi!");
     wiringPiISR(ENCA, INT_EDGE_BOTH, &countPulseA);
     wiringPiISR(ENCB, INT_EDGE_BOTH, &countPulseB);
     uint64_t startTime = milli(&ts);
-    while(milli(&ts)-startTime < 10000){} //run for10s
+    while(count < 8800){} //run for10s
     printf("%d", count);
     brakeMotors(); 
     offMotors();
